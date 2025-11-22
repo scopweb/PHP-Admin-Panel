@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+declare(strict_types=1);
 include 'header.php';
 ?>
 
@@ -14,6 +14,7 @@ include 'header.php';
         </div>
 
         <form action="../Admin_modules/login_validate.php" method="post">
+          <?= csrf_field() ?>
           <div class="form-group">
             <div class="form-label-group">
               <input type="email" id="inputUsername" name="username" class="form-control" placeholder="Enter Username" autofocus="autofocus" required>

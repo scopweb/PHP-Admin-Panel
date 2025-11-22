@@ -10,7 +10,7 @@
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
         <div class="input-group-append">
-          
+
         </div>
       </div>
     </form>
@@ -19,26 +19,13 @@
     <ul class="navbar-nav ml-auto ml-md-0">
       <!-- Action -->
 
-     <!--  <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell fa-fw"></i>
-          <span class="badge badge-danger">9+</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
-
        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
+
         <ul class="nav navbar-nav navbar-right">
           <a href="#" onclick="showTooltip()"><i class="fas fa-user fa-fw" style="color: #000000; font-size: 25px;"></i></a>
           <div class="custom_tooltip text-center" id="tooltip" style="visibility: hidden;">
           <ul class="settings_head">
-            <li>Welcome, <?php echo($_SESSION['adm_name']);?></li>
+            <li>Welcome, <?= escape($_SESSION['adm_name'] ?? 'User') ?></li>
             <hr>
             <li><a href="changepass.php"><span class="fa fa-repeat"></span>&nbsp;&nbsp;Change Password</a></li>
             <li><a data-toggle="modal" data-target="#logoutModal"><span class="fa fa-sign-out"></span>&nbsp;&nbsp;Sign Out</a></li>
@@ -54,13 +41,16 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="logout.php?logout">Logout</a>
+          <form action="logout.php" method="post" style="display: inline;">
+            <?= csrf_field() ?>
+            <button type="submit" name="logout" class="btn btn-primary">Logout</button>
+          </form>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
-<?php 
-
+<?php
+declare(strict_types=1);
 include 'header.php';
+require_auth();
 ?>
 
 <body class="bg-dark">
@@ -11,9 +12,11 @@ include 'header.php';
       <div class="card-body">
         <div class="text-center mb-4">
           <h4>Change your password</h4>
+          <p class="text-muted small">Password must be at least 8 characters</p>
         </div>
 
-        <form action="../Admin_modules/change_pass.php" method="post">
+        <form action="../Admin_modules/login_validate.php" method="post">
+          <?= csrf_field() ?>
 
           <div class="form-group">
             <div class="form-label-group">
@@ -24,18 +27,18 @@ include 'header.php';
 
           <div class="form-group">
             <div class="form-label-group">
-              <input type="password" id="new" name="new" class="form-control" placeholder="New Password" autofocus="autofocus" required>
+              <input type="password" id="new" name="new" class="form-control" placeholder="New Password" required minlength="8">
               <label for="new">New Password</label>
             </div>
           </div>
 
           <div class="form-group">
             <div class="form-label-group">
-              <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirm Password" autofocus="autofocus" required>
+              <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Confirm Password" required minlength="8">
               <label for="confirm">Confirm Password</label>
             </div>
           </div>
-                    
+
           <button class="btn btn-primary btn-block" type="submit" name="change">Change Password</button>
         </form>
       </div>

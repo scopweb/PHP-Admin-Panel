@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+declare(strict_types=1);
 include 'header.php';
 ?>
 <body class="bg-dark">
@@ -10,8 +10,9 @@ include 'header.php';
       <div class="card-body">
 
         <form action="../Admin_modules/login_validate.php" method="post">
+          <?= csrf_field() ?>
           <div class="form-group">
-            <div class="form-label-group"> 
+            <div class="form-label-group">
               <input type="email" id="mail" name="mail" class="form-control" placeholder="Username" autofocus="autofocus" required>
               <label for="mail">Username</label>
             </div>

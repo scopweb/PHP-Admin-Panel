@@ -1,15 +1,10 @@
 <?php
+declare(strict_types=1);
 
-date_default_timezone_set("Asia/Kolkata");
+date_default_timezone_set('Asia/Kolkata');
 
-error_reporting(0);
-session_start();
-
-
-if (!isset($_SESSION['adm_Id'])) {
-  header('Location: login.php');
-}
 include 'header.php';
+require_auth();
 ?>
 
 <body id="page-top">
@@ -28,11 +23,11 @@ include 'header.php';
         <div class="breadcrumb_custom">
           <div class="row">
             <div class="col-lg-6 col-md-6">
-              <p>Current User: <b><?php echo ($_SESSION['adm_name'])?></b></p>
+              <p>Current User: <b><?= escape($_SESSION['adm_name'] ?? 'Unknown') ?></b></p>
             </div>
             <div class="col-lg-6 col-md-6">
               <p id="datetime" style="text-align: right;">
-                <?php echo date("l").", ".date("d/m/Y");?>
+                <?= date("l") . ", " . date("d/m/Y") ?>
               </p>
             </div>
           </div>
@@ -118,7 +113,7 @@ include 'header.php';
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
 
-          
+
         </div>
 
       </div>
@@ -138,7 +133,6 @@ include 'header.php';
     <i class="fas fa-angle-up"></i>
   </a>
 
-  
 
   <?php include 'scripts.php';?>
 
