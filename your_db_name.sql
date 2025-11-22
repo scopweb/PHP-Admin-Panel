@@ -11,8 +11,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `your_db_name`
+-- Database: `admin_panel`
 --
+
+USE `admin_panel`;
 
 -- --------------------------------------------------------
 

@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
+require_once 'init.php';
 include 'header.php';
-?>
-<body class="bg-dark">
+?><body class="bg-dark">
 
   <div class="container">
     <div class="card card-login mx-auto mt-5">

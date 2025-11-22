@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 date_default_timezone_set('Asia/Kolkata');
 
-include 'header.php';
+require_once 'init.php';
 require_auth();
-?>
-
-<body id="page-top">
+include 'header.php';
+?><body id="page-top">
 
   <?php include 'navbar.php';?>
 

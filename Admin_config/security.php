@@ -150,8 +150,11 @@ function require_auth(): void
 /**
  * Get authenticated user data from session
  */
-function get_current_user(): array
+function get_authenticated_user(): array
 {
     init_secure_session();
     return $_SESSION['user_data'] ?? [];
 }
+
+// Auto-initialize secure session when this file is included
+init_secure_session();

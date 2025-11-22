@@ -1,0 +1,9 @@
+# Redirect root to views folder
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Redirect root to views/login.php
+    RewriteRule ^$ views/login.php [L]
+    RewriteRule ^index\.php$ views/index.php [L]
+</IfModule>

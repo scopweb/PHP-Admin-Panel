@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-include 'header.php';
+require_once 'init.php';
 
 // Get and validate token from URL
 $token = $_GET['token'] ?? '';
@@ -8,9 +8,9 @@ $token = $_GET['token'] ?? '';
 if (empty($token)) {
     redirect('login.php');
 }
-?>
 
-<body class="bg-dark">
+include 'header.php';
+?><body class="bg-dark">
 
   <div class="container">
     <div class="card card-login mx-auto mt-5">

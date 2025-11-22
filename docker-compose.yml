@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-admin-panel-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_USER=admin
+      - DB_PASS=secretpassword
+      - DB_NAME=admin_panel
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - admin-network
+
+  db:
+    image: mysql:8.0
+    container_name: php-admin-panel-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=admin_panel
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=secretpassword
+    volumes:
+      - ./your_db_name.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - admin-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: php-admin-panel-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=admin
+      - PMA_PASSWORD=secretpassword
+      - MYSQL_ROOT_PASSWORD=rootpassword
+    depends_on:
+      - db
+    networks:
+      - admin-network
+
+volumes:
+  db_data:
+
+networks:
+  admin-network:
+    driver: bridge
